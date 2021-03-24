@@ -1,18 +1,13 @@
 package Task_1;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OddElements{
-    public String getOddElementsInArray(String[] names){
-        String result = "";
-        if (names.length > 0){
-            for (int i = 0; i < names.length; i++) {
-                if (i%2!=0){
-                    result += String.format("%s. %s, ", i, names[i]);
-                }
-            }
-        }
-        else{
-            return "The obtained array is empty";
-        }
-        return result.substring(0, result.length()-2);
+    public String getNamesWithOddIndex(List<String> names) {
+        return names.stream()
+                .map(name -> (names.indexOf(name)) + ". " + name)
+                .filter(name -> Integer.parseInt(name.substring(0, 1)) % 2 == 1)
+                .collect(Collectors.joining(", "));
     }
 }
